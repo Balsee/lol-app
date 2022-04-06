@@ -5,7 +5,12 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { getCookie, setCookies } from 'cookies-next';
 
-import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
+import {
+  MantineProvider,
+  ColorScheme,
+  ColorSchemeProvider,
+  useMantineColorScheme,
+} from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
 
 import Dashboard from '../layouts/dashboard';

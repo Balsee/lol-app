@@ -28,7 +28,7 @@ export const getServerSideProps = async () => {
 };
 
 function getChampionImage(id) {
-  return `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${id}.png`;
+  return `https://cdn.communitydragon.org/latest/champion/${id}/tile`;
 }
 
 const CHAMPION_ROLES = ['mage', 'fighter', 'tank', 'assassin', 'support', 'marksman'];
@@ -133,7 +133,7 @@ const Champions = ({ champions }) => {
         <MultiSelect
           data={[
             { value: 'easy', label: 'Easy' },
-            { value: 'medium', label: 'Medium' },
+            { value: 'moderate', label: 'Moderate' },
             { value: 'hard', label: 'Hard' },
           ]}
           label="Difficulty"

@@ -1,9 +1,20 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
-import { data } from '../../constants';
+// Components
+import Image from 'next/image';
+import { Tabs } from '@mantine/core';
 
+// Custom Components
 import Banner from '../../components/Banner/Banner';
 
+// Icons
+import { IconLayoutGrid } from '@tabler/icons';
+
+// Other
+import { data } from '../../constants';
+
+// Functions
 export const getStaticPaths = async () => {
   const res = await fetch(data.CHAMPIONS_URL);
   const champions = await res.json();
@@ -26,20 +37,48 @@ export async function getStaticProps({ params }) {
   };
 }
 
-const Champion = ({ champion }) => {
+// Main Component
+const Champion = ({ champion, children }) => {
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   return (
-    <div>
+    <>
       <Banner
         title={champion.name}
         description={champion.title}
         image={{
-          src: `https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-splashes/uncentered/${champion.id}/${champion.skins[0].id}.jpg`,
+          src: `https://cdn.communitydragon.org/latest/champion/${champion.id}/splash-art/centered`,
           alt: champion.name,
         }}
-      ></Banner>
-    </div>
+      />
+
+      <div>
+        <h2>{champion.passive.name}</h2>
+
+        <span>{champion.passive.description}</span>
+
+        <Image
+          src={`https://cdn.communitydragon.org/latest/champion/${champion.id}/ability-icon/p`}
+          width={32}
+          height={32}
+        />
+      </div>
+
+      {/* <Tabs onTabChange={() => router.push(`${router.asPath}/skills`)} variant="pills">
+        <Tabs.Tab label="Overview" icon={<IconLayoutGrid />}>
+          Overview
+        </Tabs.Tab>
+        <Tabs.Tab label="Skills" icon={<IconLayoutGrid />}>
+          Skills
+        </Tabs.Tab>
+        <Tabs.Tab label="Misc" icon={<IconLayoutGrid />}>
+          Misc
+        </Tabs.Tab>
+      </Tabs> */}
+
+      {children}
+    </>
   );
 };
 

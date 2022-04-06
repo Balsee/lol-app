@@ -1,9 +1,14 @@
-import { AppShell, Footer, ScrollArea } from '@mantine/core';
+import { AppShell, Footer, ScrollArea, useMantineColorScheme } from '@mantine/core';
+import { useHotkeys } from '@mantine/hooks';
 
 import Header from '../containers/Header/Header';
 import Navbar from '../containers/Navbar/Navbar';
 
 const Dashboard = (props) => {
+  const { colorScheme, toggleColorScheme } = useMantineColorScheme();
+
+  useHotkeys([['mod+J', () => toggleColorScheme()]]);
+
   return (
     <AppShell
       header={<Header />}

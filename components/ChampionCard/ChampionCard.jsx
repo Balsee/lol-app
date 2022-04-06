@@ -8,7 +8,9 @@ const ChampionCard = ({ name, id, image, roles }) => {
     <Link href={`/champions/${id}`}>
       <Card withBorder radius="md" p="md">
         <Group align="flex-start" position="apart">
-          <Image src={image} width={32} height={32} />
+          <Avatar radius="md" p="0">
+            <Image src={image} width={48} height={48} />
+          </Avatar>
           <Group spacing="0.5rem">
             {roles.map((role) => (
               <Badge key={role}>{role}</Badge>
